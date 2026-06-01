@@ -37,7 +37,7 @@ def load_yolov5_model(weights_path):
     with st.spinner('Đang tải mô hình AI... Vui lòng đợi.'):
         try:
             # Load model custom
-            model = torch.hub.load('ultralytics/yolov5', 'custom', path=weights_path, force_reload=False)
+            model = torch.hub.load('./yolov5', 'custom', path=weights_path, source='local', force_reload=True)
             return model
         except Exception as e:
             st.error(f"❌ Lỗi khi load mô hình: {e}")
@@ -101,7 +101,7 @@ if model:
         default_img_path = "train_batch0.jpg"
         if os.path.exists(default_img_path):
             input_image = Image.open(default_img_path)
-            image_name = default_img_path (Mặc định)
+            image_name = default_img_path # (Mặc định)
             st.sidebar.caption(f"Đang dùng ảnh mặc định: {default_img_path}")
         else:
             st.warning("⚠️ Vui lòng tải ảnh lên từ Thanh bên (Sidebar) để bắt đầu phân tích.")
